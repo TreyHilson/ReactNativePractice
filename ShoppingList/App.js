@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {View, Image, StyleSheet, Text, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList, Alert} from 'react-native';
 import Header from './components/header';
-import ListItem from './components/ListItem'
-import AddItem from './components/addItem'
+import ListItem from './components/ListItem';
+import AddItem from './components/addItem';
 import {v4 as uuidv4} from 'uuid';
 // View supports layout with flexbox, style, & some touch handling.
 
@@ -10,25 +10,35 @@ const App = () => {
   const [items, setItems] = useState([
     {id: uuidv4(), text: 'Change U'},
     {id: uuidv4(), text: 'Its A Dark World'},
-    {id: uuidv4(), text: 'Buttta'}  ]);
+    {id: uuidv4(), text: 'Buttta'}]);
 
-  const deleteItem = (id) => {
+  const deleteItem = id => {
     setItems(prevItems => {
-      return prevItems.filter(item => item.id != id);
+      return prevItems.filter(item => item.id !== id);
     });
   };
 
-  const addItem = (item) => {
-    
-  }
+  const addItem = text => {
+    if (!text) {
+      Alert.alert('Error', 'Please enter a track', {text: 'Ok'});
+    } else {
+      setItems(prevItems => {
+        return [{id: uuidv4(), text}, ...prevItems];
+      });
+
+    }
+
+  };
 
 return (
     <View style={styles.container}>
       <Header />
-      <AddItem />
+      <AddItem addItem={addItem} />
       <FlatList
         data={items}
-        renderItem={({item}) => <ListItem item={item} deleteItem={deleteItem} />}
+        renderItem={({item}) => (
+          <ListItem item={item} deleteItem={deleteItem} />
+        )}
     />
     </View>
   );

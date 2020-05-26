@@ -1,19 +1,30 @@
 import React, {useState} from 'react';
-import {View, Image, Text, StyleSheet, TextInput, TouchableOpacity,} from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 // View supports layout with flexbox, style, & some touch handling.
 
-const AddItem = ({title}) => {
+const AddItem = ({title, addItem}) => {
   const [text, setText] = useState('');
 
-  const onChange = (textValue) => setText(textValue);
+  const onChange = textValue => setText(textValue);
 
   return (
     <View>
-      <TextInput placeholder="Add Item...." style={styles.input} onChangeText={onChange} />
-      <TouchableOpacity style={styles.btn}>
+      <TextInput
+        placeholder="Add Track...."
+        style={styles.input}
+        onChangeText={onChange}
+      />
+      <TouchableOpacity style={styles.btn} onPress={() => addItem(text)}>
         <Text style={styles.btnText}>
-          <Icon name="plus" size={20} /> Add Item
+          <Icon name="plus" size={20} /> Add Track
         </Text>
     </TouchableOpacity>
     </View>

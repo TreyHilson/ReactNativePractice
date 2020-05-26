@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, Image, StyleSheet, Text, FlatList} from 'react-native';
 import Header from './components/header';
 import ListItem from './components/ListItem'
+import AddItem from './components/addItem'
 import {v4 as uuidv4} from 'uuid';
 // View supports layout with flexbox, style, & some touch handling.
 
@@ -17,9 +18,14 @@ const App = () => {
     });
   };
 
+  const addItem = (item) => {
+    
+  }
+
 return (
     <View style={styles.container}>
-    <Header />
+      <Header />
+      <AddItem />
       <FlatList
         data={items}
         renderItem={({item}) => <ListItem item={item} deleteItem={deleteItem} />}

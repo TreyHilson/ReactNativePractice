@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 28,
     textAlign: 'center',
+    textShadowColor: '#000',
   },
   img: {
     width: 330,
